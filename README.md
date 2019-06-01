@@ -24,7 +24,7 @@ sandbox.allow(File.class);
 sandbox.eval("var File = Java.type('java.io.File'); File;")
 ```
 
-Or you can inject your java object as a JS global variable
+Or you can inject your Java object as a JS global variable
 
 ```java
 GraalSandboxes sandbox = GraalSandboxes.create();
