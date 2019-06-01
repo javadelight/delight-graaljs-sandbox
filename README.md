@@ -2,7 +2,7 @@
 
 A secure sandbox for executing JavaScript in Java apps using the [Graal JS](https://github.com/graalvm/graaljs) engine.
 
-Also see [Nashorn Sandbox](https://github.com/javadelight/delight-nashorn-sandbox) and [Rhino Sandbox](https://github.com/javadelight/delight-rhino-sandbox).
+This project is based on a [PR](https://github.com/javadelight/delight-nashorn-sandbox/pull/87/) in the [Nashorn Sandbox](https://github.com/javadelight/delight-nashorn-sandbox) project by [Marco Ellwanger](https://github.com/mellster2012). The Graal JS sandbox has been extracted from the Nashorn Sandbox repository to provide projects with a dedicated module to use if Graal JS sandbox capabilities are required.
 
 Part of the [Java Delight Suite](https://github.com/javadelight/delight-main#java-delight-suite).
 
@@ -88,11 +88,6 @@ This artifact is available on [Maven Central](https://search.maven.org/#search%7
 ## Contributors
 
 [Marco Ellwanger](https://github.com/mellster2012): Initial support for GraalJS engine by implementing sandbox implementation backed by GraalJS.
-
-[Eduardo Velasques](https://github.com/eduveks): API extensions to block/allow system functions; Capability to block/allow variables after Sandbox has been created. 
-
-[Marcin Gołębski](https://github.com/mgolebsk): Major refactoring and performance improvements. Among other things improved the performance
-for JS evaluation and better handling of monitoring for threads for possible CPU abuse ([Nashorn #23](https://github.com/javadelight/delight-nashorn-sandbox/pull/23)).
 
 ## Version History
 
