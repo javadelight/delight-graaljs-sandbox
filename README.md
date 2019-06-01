@@ -87,12 +87,12 @@ This artifact is available on [Maven Central](https://search.maven.org/#search%7
 
 ## Contributors
 
+[Marco Ellwanger](https://github.com/mellster2012): Initial support for GraalJS engine by implementing sandbox implementation backed by GraalJS.
+
 [Eduardo Velasques](https://github.com/eduveks): API extensions to block/allow system functions; Capability to block/allow variables after Sandbox has been created. 
 
 [Marcin Gołębski](https://github.com/mgolebsk): Major refactoring and performance improvements. Among other things improved the performance
 for JS evaluation and better handling of monitoring for threads for possible CPU abuse ([Nashorn #23](https://github.com/javadelight/delight-nashorn-sandbox/pull/23)).
-
-[Marco Ellwanger](https://github.com/mellster2012): Initial support for GraalJS engine by implementing sandbox implementation backed by GraalJS.
 
 ## Version History
 
