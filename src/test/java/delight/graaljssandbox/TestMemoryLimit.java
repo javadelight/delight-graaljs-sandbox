@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 
 import javax.script.ScriptException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import delight.nashornsandbox.NashornSandbox;
@@ -15,7 +16,7 @@ import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 import delight.nashornsandbox.exceptions.ScriptMemoryAbuseException;
 
 public class TestMemoryLimit {
-	private static final int MEMORY_LIMIT = 700 * 1024;
+	private static final int MEMORY_LIMIT = 1500 * 1024;
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
