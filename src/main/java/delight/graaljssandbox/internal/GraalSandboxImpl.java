@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import com.oracle.truffle.js.scriptengine.GraalJSScriptEngine;
 
+import delight.graaljssandbox.GraalSandbox;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 import delight.nashornsandbox.internal.EvaluateOperation;
 import delight.nashornsandbox.internal.JsSanitizer;
@@ -30,7 +31,7 @@ import delight.nashornsandbox.internal.NashornSandboxImpl;
  * 
  * @author marcoellwanger
  */
-public class GraalSandboxImpl extends NashornSandboxImpl {
+public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox {
 
 	static final Logger LOG = LoggerFactory.getLogger(GraalSandboxImpl.class);
 	

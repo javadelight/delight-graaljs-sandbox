@@ -1,7 +1,6 @@
 package delight.graaljssandbox;
 
 import delight.graaljssandbox.internal.GraalSandboxImpl;
-import delight.nashornsandbox.NashornSandbox;
 
 /**
  * The sandbox factory for GraalJS.
@@ -10,11 +9,11 @@ import delight.nashornsandbox.NashornSandbox;
  */
 public class GraalSandboxes {
 	
-	public static NashornSandbox create() {
+	public static GraalSandbox create() {
 		return new GraalSandboxImpl();
 	}
 	
-	public static NashornSandbox create(String... args) {
+	public static GraalSandbox create(String... args) {
 		return new GraalSandboxImpl(args);
 	}
 }
