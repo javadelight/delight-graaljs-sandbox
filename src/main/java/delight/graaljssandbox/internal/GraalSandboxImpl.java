@@ -70,6 +70,11 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		return scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
 	}
 	
+	@Override
+	public Bindings createNewBindings () {
+		return scriptEngine.createBindings();
+	}
+	
 //	@Override
 	protected void produceSecureBindings() {
         try {
