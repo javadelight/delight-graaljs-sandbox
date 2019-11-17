@@ -70,7 +70,7 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		return scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
 	}
 	
-	@Override
+//	@Override
 	protected void produceSecureBindings() {
         try {
             final StringBuilder sb = new StringBuilder();
@@ -94,7 +94,7 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
                 sb.append("var $OPTIONS=null;var $OUT=null;var $ERR=null;var $EXIT=null;");
             }
             scriptEngine.eval(sb.toString());
-            this.engineAsserted = true;
+            this.engineAsserted.set(true);
         }
         catch (final Exception e) {
             throw new RuntimeException(e);

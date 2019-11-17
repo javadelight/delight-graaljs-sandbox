@@ -28,7 +28,7 @@ public class TestManyEvalsAndInjections {
 		sandboxInterruption.eval("res = 1;");
 		sandboxInterruption.inject("num", Integer.valueOf(10));
 		sandboxInterruption.eval("res = num + 1;");
-		Assert.assertEquals(Double.valueOf(11.0), sandboxInterruption.get("res"));
+		Assert.assertEquals(11, sandboxInterruption.get("res"));
 		sandboxInterruption.inject("str", "20");
 		sandboxInterruption.eval("res = num + str;");
 		Assert.assertEquals("1020", sandboxInterruption.get("res"));
