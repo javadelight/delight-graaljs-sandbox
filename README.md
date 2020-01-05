@@ -91,6 +91,7 @@ This artifact is available on [Maven Central](https://search.maven.org/#search%7
 
 ## Version History
 
+- 0.1.2: Allowing access to Java classes ([PR 2](https://github.com/javadelight/delight-graaljs-sandbox/pull/2) by [JavaGrinko](https://github.com/JavaGrinko))
 - 0.1.1: Update to latest Graal JS and Nashorn Sandbox dependency ([PR 1](https://github.com/javadelight/delight-graaljs-sandbox/pull/1) by [thmarx](https://github.com/thmarx))
 - 0.1.0: Initial support for Graal JS ([Nashorn PR #87](https://github.com/javadelight/delight-nashorn-sandbox/pull/87/) by [mellster2012](https://github.com/mellster2012)) 
 
