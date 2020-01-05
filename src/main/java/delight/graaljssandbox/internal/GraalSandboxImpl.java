@@ -43,13 +43,17 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 
 	public GraalSandboxImpl(String... params) {
 		// HostAccess and PolyglotAccess is necessary to access Java classes
-		super(GraalJSScriptEngine.create(null, Context.newBuilder().allowExperimentalOptions(true).allowPolyglotAccess(PolyglotAccess.ALL).allowHostAccess(HostAccess.ALL)), params);
+		super(GraalJSScriptEngine.create(null, Context.newBuilder()
+				.allowExperimentalOptions(true)
+				.allowPolyglotAccess(PolyglotAccess.ALL)
+				.allowHostAccess(HostAccess.ALL)
+				.allowAllAccess(true)), params);
 		isStrict = Arrays.asList(params).contains("-strict");
 		Bindings bindings = this.scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
 		// allow the lookup of Java classes via the (deprecated) ClassFilter
 		bindings.put("polyglot.js.allowHostClassLookup", (Predicate<String>) s -> sandboxClassFilter.getStringCache().contains(s));
 	}
-	
+
 	/**
 	 * Temporary: GraalJS currently does not support resetting of bindings
 	 * @see https://github.com/oracle/graal/issues/631
