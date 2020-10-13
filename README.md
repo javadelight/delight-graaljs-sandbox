@@ -8,8 +8,6 @@ Part of the [Java Delight Suite](https://github.com/javadelight/delight-main#jav
 
 [![Build Status](https://travis-ci.org/javadelight/delight-graaljs-sandbox.svg?branch=master)](https://travis-ci.org/javadelight/delight-graaljs-sandbox)
 
-Open Security Issues: [Nashorn # 73](https://github.com/javadelight/delight-nashorn-sandbox/issues/73)
-
 ## Usage
 
 The sandbox by default **blocks access to all** Java classes.
