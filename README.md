@@ -2,11 +2,9 @@
 
 A secure sandbox for executing JavaScript in Java apps using the [Graal JS](https://github.com/graalvm/graaljs) engine.
 
-This project is based on a [PR](https://github.com/javadelight/delight-nashorn-sandbox/pull/87/) in the [Nashorn Sandbox](https://github.com/javadelight/delight-nashorn-sandbox) project by [Marco Ellwanger](https://github.com/mellster2012). The Graal JS sandbox has been extracted from the Nashorn Sandbox repository to provide projects with a dedicated module to use if Graal JS sandbox capabilities are required.
+Also see [Nashorn Sandbox](https://github.com/javadelight/delight-nashorn-sandbox) and [Rhino Sandbox](https://github.com/javadelight/delight-rhino-sandbox).
 
 Part of the [Java Delight Suite](https://github.com/javadelight/delight-main#java-delight-suite).
-
-[![Build Status](https://travis-ci.org/javadelight/delight-graaljs-sandbox.svg?branch=master)](https://travis-ci.org/javadelight/delight-graaljs-sandbox)
 
 ## Usage
 
@@ -82,6 +80,10 @@ This artifact is available on [Maven Central](https://search.maven.org/#search%7
 [BinTray](https://bintray.com/javadelight/javadelight/delight-graaljs-sandbox).
 
 [![Maven Central](https://img.shields.io/maven-central/v/org.javadelight/delight-graaljs-sandbox.svg)](https://search.maven.org/#search%7Cga%7C1%7Cdelight-graaljs-sandbox)
+
+## Project Background
+
+This project is based on a [PR](https://github.com/javadelight/delight-nashorn-sandbox/pull/87/) in the [Nashorn Sandbox](https://github.com/javadelight/delight-nashorn-sandbox) project by [Marco Ellwanger](https://github.com/mellster2012). The Graal JS sandbox has been extracted from the Nashorn Sandbox repository to provide projects with a dedicated module to use if Graal JS sandbox capabilities are required.
 
 ## Contributors
 
