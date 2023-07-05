@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 
 import javax.script.ScriptException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
  
@@ -34,7 +33,7 @@ public class TestMemoryLimit {
 		}
 	}
 
-	@Test(expected = BracesException.class)
+	@Test(expected = ScriptMemoryAbuseException.class)
 	public void test_noexpectedbraces_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {

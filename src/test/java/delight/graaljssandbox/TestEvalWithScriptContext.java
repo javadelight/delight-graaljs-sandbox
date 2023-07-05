@@ -35,7 +35,6 @@ public class TestEvalWithScriptContext {
 
 	}
 
-	@Ignore
 	@Test
 	public void testWithCPUAndMemory_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();

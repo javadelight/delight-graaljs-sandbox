@@ -8,12 +8,12 @@ import java.util.concurrent.Executors;
 import javax.script.Invocable;
 import javax.script.ScriptException;
 
+import org.junit.Assert;
 import org.junit.Test;
 
  
 import delight.nashornsandbox.exceptions.BracesException;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
-import junit.framework.Assert;
 
 public class TestLimitCPU {
 
@@ -72,7 +72,7 @@ public class TestLimitCPU {
 		sandbox.getExecutor().shutdown();
 	}
 
-	@Test(expected = BracesException.class)
+	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_only_while_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
@@ -114,8 +114,8 @@ public class TestLimitCPU {
 		}
 	}
 
-	@Test(expected = BracesException.class)
-	public void test_while_plus_iteration_bad_scrip_graal() throws ScriptCPUAbuseException, ScriptException {
+	@Test(expected = ScriptCPUAbuseException.class)
+	public void test_while_plus_iteration_bad_script_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(50);
@@ -196,7 +196,7 @@ public class TestLimitCPU {
 	}
 
 	@Test
-	public void testCpuLmitInInvocable_graal() throws ScriptCPUAbuseException, ScriptException, NoSuchMethodException {
+	public void testCpuLimitInInvocable_graal() throws ScriptCPUAbuseException, ScriptException, NoSuchMethodException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());

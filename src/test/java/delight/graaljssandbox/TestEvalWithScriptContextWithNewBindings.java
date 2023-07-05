@@ -36,7 +36,7 @@ public class TestEvalWithScriptContextWithNewBindings {
 		newBinding.put("Date", "2112018");
 
 		final Object res = sandbox.eval("function method() { return parseInt(Date);} method();", newBinding);
-		Assert.assertTrue(Double.isNaN((Double)res));
+		Assert.assertTrue(res.equals(2112018));
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ public class TestEvalWithScriptContextWithNewBindings {
 		newBinding.put("Date", "2112018");
 
 		final Object res = sandbox.eval("function method() { return parseInt(Date);} method();", newContext);
-		Assert.assertTrue(Double.isNaN((Double)res));
+		Assert.assertTrue(res.equals(2112018));
 	}
 	
 }

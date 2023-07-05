@@ -56,16 +56,9 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 				(Predicate<String>) s -> sandboxClassFilter.getStringCache().contains(s));
 	}
 
-	/**
-	 * Temporary: GraalJS currently does not support sharing objects across
-	 * bindings/contexts
-	 * 
-	 * @see https://github.com/oracle/graal/issues/631
-	 */
 	@Override
 	public Bindings createBindings() {
 		return scriptEngine.createBindings();
-		// scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
 	}
 
 	@Override
@@ -103,31 +96,14 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		}
 	}
 
-	/**
-	 * Temporary: GraalJS currently does not support sharing objects across
-	 * bindings/contexts and has slightly different behavior for engine vs global
-	 * context
-	 * 
-	 * @see https://github.com/oracle/graal/issues/631
-	 * @see https://github.com/graalvm/graaljs/issues/47
-	 * @see https://github.com/graalvm/graaljs/issues/146
-	 *      Merges new bindings into existing engine bindings while preserving
-	 *      existing globals
-	 */
 	@Override
 	protected Bindings secureBindings(Bindings bindings) {
 		if (bindings == null)
 			return null;
-		Set<String> toRemove = new HashSet<String>();
-		if (bindings != cached) {
-			for (Map.Entry<String, Object> entry : bindings.entrySet()) {
-				if (cached.putIfAbsent(entry.getKey(), entry.getValue()) != null)
-					toRemove.add(entry.getKey());
-			}
-		}
-		for (String key : toRemove)
-			bindings.remove(key);
-		return cached;
+
+		bindings.putAll(cached);
+
+		return bindings;
 	}
 
 	/**
@@ -142,21 +118,6 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 	@Override
 	public Object eval(final String js, final SandboxScriptContext scriptContext, final Bindings bindings)
 			throws ScriptCPUAbuseException, ScriptException {
-		final Set<String> addedKeys = new HashSet<>();
-		if (scriptContext != null) {
-			// Bindings engineBindings = scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
-
-			// Bindings contextBindings = scriptContext.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
-			// if (contextBindings != null) {
-			// 	for (String key : contextBindings.keySet()) {
-			// 		if (engineBindings.get(key) != null)
-			// 			contextBindings.remove(key);
-			// 		else
-			// 			addedKeys.add(key);
-			// 	}
-			// }
-
-		}
 		produceSecureBindings(); // We need this here for bindings
 		final JsSanitizer sanitizer = getSanitizer();
 		// see https://github.com/javadelight/delight-nashorn-sandbox/issues/73
@@ -173,11 +134,7 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 
 		EvaluateOperation op;
 		final Bindings securedBindings = secureBindings(bindings);
-		if (bindings != null) {
-			addedKeys.addAll(bindings.keySet());
-		}
 		if (scriptContext != null) {
-
 			op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
 					scriptContext.getContext(),
 					securedBindings);
@@ -185,11 +142,6 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 			op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
 					null, securedBindings);
 		}
-		try {
-			return executeSandboxedOperation(op);
-		} finally {
-			for (String key : addedKeys)
-				cached.remove(key);
-		}
+		return executeSandboxedOperation(op);
 	}
 }
