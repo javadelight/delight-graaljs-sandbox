@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.javadelight</groupId>
 			<artifactId>delight-nashorn-sandbox</artifactId>
-			<version>0.1.27</version>
+			<version>0.3.2</version>
 		</dependency>
 		
 		<dependency>
