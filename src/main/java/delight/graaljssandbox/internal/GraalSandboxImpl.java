@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.oracle.truffle.js.scriptengine.GraalJSScriptEngine;
 
 import delight.graaljssandbox.GraalSandbox;
+import delight.nashornsandbox.SandboxScriptContext;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 import delight.nashornsandbox.internal.EvaluateOperation;
 import delight.nashornsandbox.internal.JsSanitizer;
@@ -54,16 +55,6 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		bindings.put("polyglot.js.allowHostClassLookup", (Predicate<String>) s -> sandboxClassFilter.getStringCache().contains(s));
 	}
 
-	/**
-	 * Temporary: GraalJS currently does not support resetting of bindings
-	 * @see https://github.com/oracle/graal/issues/631
-	 * @see https://github.com/graalvm/graaljs/issues/47
-	 * @see https://github.com/graalvm/graaljs/issues/146
-	 */
-	@Override
-	protected void resetEngineBindings() {
-		
-    }
 	
 	/**
 	 * Temporary: GraalJS currently does not support sharing objects across bindings/contexts
@@ -130,19 +121,22 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
         return cached;
     }
     
-    /**
+		
+
+		/**
      * If a script context is provided, its bindings will be evaluated inside the script engine itself and merged into the engine bindings.
      * Nashorn checks against globals but Graal seems to override global entries if the same key is present in the script context's bindings.
      *
      * For strict mode for GraalJS we need to prefix the sanitized code with 'use strict;' 
      */
 	@Override
-	public Object eval(final String js, final ScriptContext scriptContext, final Bindings bindings)
+	public Object eval(final String js, final SandboxScriptContext scriptContext, final Bindings bindings)
 			throws ScriptCPUAbuseException, ScriptException {
 		Set<String> addedKeys = new HashSet<>();
 		if (scriptContext != null) {
 			Bindings engineBindings = scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
-			Bindings contextBindings = scriptContext.getBindings(ScriptContext.ENGINE_SCOPE);
+
+			Bindings contextBindings = scriptContext.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
 			if (contextBindings != null) {
 				for (String key : contextBindings.keySet()) {
 					if (engineBindings.get(key) != null) contextBindings.remove(key);
@@ -165,7 +159,9 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		}
         final Bindings securedBindings = secureBindings(bindings);
         if (bindings != null) addedKeys.addAll(bindings.keySet());
-        EvaluateOperation op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs, scriptContext, securedBindings);
+        EvaluateOperation op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
+				  scriptContext.getContext(),
+					securedBindings);
         try {
         	return executeSandboxedOperation(op);
         } finally {
