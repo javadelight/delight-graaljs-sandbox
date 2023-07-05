@@ -19,7 +19,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(50);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -37,7 +37,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_evil_script_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
 		final String js = "var x = 1;\nwhile (true) { }\n";
@@ -59,7 +59,7 @@ public class TestLimitCPU {
 
 	@Test
 	public void test_nice_script_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(500);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
 		final StringBuilder _builder = new StringBuilder();
@@ -74,7 +74,7 @@ public class TestLimitCPU {
 
 	@Test(expected = BracesException.class)
 	public void test_only_while_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
 		try {
@@ -87,7 +87,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_only_while_allowed_bad_script_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
 
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -102,7 +102,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_only_while_good_script_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
 		try {
@@ -116,7 +116,7 @@ public class TestLimitCPU {
 
 	@Test(expected = BracesException.class)
 	public void test_while_plus_iteration_bad_scrip_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(50);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -129,7 +129,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_while_plus_iteration_bad_scrip_allowed_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(50);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -143,7 +143,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_while_plus_iteration_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(50);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -156,7 +156,7 @@ public class TestLimitCPU {
 
 	@Test(expected = ScriptCPUAbuseException.class)
 	public void test_do_while_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(50);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -175,7 +175,7 @@ public class TestLimitCPU {
 		String js = "while (true) {};";
 		for (int i = 0; i < 20; i++) {
 
-			NashornSandbox sandbox = GraalSandboxes.create();
+			GraalSandbox sandbox = GraalSandboxes.create();
 			sandbox.setMaxCPUTime(100); // in millis
 			sandbox.setMaxMemory(1000 * 1000); // 1 MB
 			sandbox.allowNoBraces(false);
@@ -197,7 +197,7 @@ public class TestLimitCPU {
 
 	@Test
 	public void testCpuLmitInInvocable_graal() throws ScriptCPUAbuseException, ScriptException, NoSuchMethodException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(50);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
 		try {

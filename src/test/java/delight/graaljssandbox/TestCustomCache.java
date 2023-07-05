@@ -33,7 +33,7 @@ public class TestCustomCache {
 	
 	@Test
 	public void testCustomCacheUsage_graal() throws ScriptCPUAbuseException, ScriptException {
-		NashornSandbox sb = GraalSandboxes.create();
+		GraalSandbox sb = GraalSandboxes.create();
 		final CustomCache cache = new CustomCache();
 		sb.setScriptCache(cache);
 		Object result = sb.eval("5 ;");

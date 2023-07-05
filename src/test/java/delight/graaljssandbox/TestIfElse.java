@@ -14,7 +14,7 @@ public class TestIfElse {
 
 	@Test
 	public void testIfElse_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(500);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
 		final StringBuilder _builder = new StringBuilder();

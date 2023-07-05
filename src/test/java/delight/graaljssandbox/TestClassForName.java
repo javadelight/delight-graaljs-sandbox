@@ -15,7 +15,7 @@ public class TestClassForName {
 	@Test
 	public void test_access_granted_graal() throws Exception {
 		
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.allow(ArrayList.class);
 		sandbox.allow(Class.class);
 		sandbox.eval("var ArrayList = Java.type('java.util.ArrayList');");
@@ -34,7 +34,7 @@ public class TestClassForName {
 	@Test
 	public void test_access_denied_graal() throws Exception {
 		
-		final NashornSandbox sandbox1 = GraalSandboxes.create();
+		final GraalSandbox sandbox1 = GraalSandboxes.create();
 		Throwable t = null;
 		try {
 			sandbox1.eval("var ArrayList = Java.type('java.util.ArrayList');");
@@ -43,7 +43,7 @@ public class TestClassForName {
 		}
 		Assert.assertEquals(PolyglotException.class, t.getCause().getClass());
 		
-		final NashornSandbox sandbox2 = GraalSandboxes.create();
+		final GraalSandbox sandbox2 = GraalSandboxes.create();
 		sandbox2.allow(String.class);
 		try {
 			sandbox2.eval("var String = Java.type('java.lang.String');");

@@ -15,7 +15,7 @@ public class TestScriptEngineParameters {
 	@Test(expected=ScriptException.class)
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
 
-		final NashornSandbox sandbox = GraalSandboxes.create("-strict");
+		final GraalSandbox sandbox = GraalSandboxes.create("-strict");
 	    sandbox.allow(File.class);
 
 	    // should throw an exception since 'Java' is not allowed.

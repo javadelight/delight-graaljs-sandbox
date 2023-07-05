@@ -11,7 +11,7 @@ public class TestBuiltInObjectsAccess {
 	
 	@Test
 	public void test_block_access_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		
 		sandbox.eval("exit()");
 		sandbox.eval("quit()");

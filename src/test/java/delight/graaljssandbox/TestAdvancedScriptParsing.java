@@ -19,7 +19,7 @@ import junit.framework.Assert;
 public class TestAdvancedScriptParsing {
 		
 	Logger loggerGraal;
-	NashornSandbox sandboxGraal;
+	GraalSandbox sandboxGraal;
 
 
 	public static class Logger {

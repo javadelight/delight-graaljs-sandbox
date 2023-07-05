@@ -11,13 +11,13 @@ public class TestInaccessible {
 
 	@Test(expected = Exception.class)
 	public void test_system_exit_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.eval("java.lang.System.exit(0);");
 	}
 
 	@Test(expected = Exception.class)
 	public void test_file_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.eval("var File = Java.type(\"java.io.File\"); File;");
 	}
 

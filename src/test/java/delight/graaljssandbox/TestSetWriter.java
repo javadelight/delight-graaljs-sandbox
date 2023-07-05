@@ -13,7 +13,7 @@ import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 public class TestSetWriter {
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.allowPrintFunctions(true);
 		final StringWriter writer = new StringWriter();
 		sandbox.setWriter(writer);

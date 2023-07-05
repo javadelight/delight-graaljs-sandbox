@@ -12,7 +12,7 @@ public class TestKeepVariables {
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.eval("var window={};");
 		sandbox.eval("window.val1 = \"myval\";");
 		final Object res = sandbox.eval("window.val1;");

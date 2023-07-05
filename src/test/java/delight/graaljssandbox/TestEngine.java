@@ -13,8 +13,8 @@ public class TestEngine {
 	@Test(expected = ScriptException.class)
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
 
-		NashornSandbox sandbox = GraalSandboxes.create();
-		NashornSandbox sandbox2 = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox2 = GraalSandboxes.create();
 
 		Assert.assertEquals(null, sandbox.eval("this.engine.factory"));
 		Assert.assertTrue(sandbox2 != null);
@@ -24,7 +24,7 @@ public class TestEngine {
 	@Test(expected = ScriptException.class)
 	public void test_with_delete_graal() throws ScriptCPUAbuseException, ScriptException {
 
-		NashornSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
 
 		sandbox.eval("Object.defineProperty(this, 'engine', {});\n" +  "Object.defineProperty(this, 'context', {});");
         sandbox.eval("delete this.__noSuchProperty__;");

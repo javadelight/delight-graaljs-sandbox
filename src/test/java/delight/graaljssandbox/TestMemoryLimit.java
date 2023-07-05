@@ -20,7 +20,7 @@ public class TestMemoryLimit {
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxMemory(MEMORY_LIMIT);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -36,7 +36,7 @@ public class TestMemoryLimit {
 
 	@Test(expected = BracesException.class)
 	public void test_noexpectedbraces_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxMemory(MEMORY_LIMIT);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -50,7 +50,7 @@ public class TestMemoryLimit {
 
 	@Test
 	public void test_killed_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxMemory(MEMORY_LIMIT);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
@@ -68,7 +68,7 @@ public class TestMemoryLimit {
 
 	@Test
 	public void test_no_abuse_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxMemory(MEMORY_LIMIT);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());

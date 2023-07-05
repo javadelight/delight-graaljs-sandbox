@@ -13,7 +13,7 @@ public class TestAllowAccess {
 	
 	@Test
 	  public void test_file_graal() throws ScriptCPUAbuseException, ScriptException {
-	    final NashornSandbox sandbox = GraalSandboxes.create();
+	    final GraalSandbox sandbox = GraalSandboxes.create();
 	    sandbox.allow(File.class);
 	    sandbox.eval("var File = Java.type('java.io.File'); File;");
 	  }

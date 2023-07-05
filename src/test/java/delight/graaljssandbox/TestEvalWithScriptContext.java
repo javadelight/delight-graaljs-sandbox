@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 import javax.script.Bindings;
 import javax.script.ScriptContext;
 import javax.script.ScriptException;
-import javax.script.SimpleScriptContext;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,7 +17,7 @@ public class TestEvalWithScriptContext {
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		SandboxScriptContext newContext1 = sandbox.createScriptContext();
 		Bindings engineScope1 = newContext1.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
 		engineScope1.put("y", 2);
@@ -37,7 +36,7 @@ public class TestEvalWithScriptContext {
 
 	@Test
 	public void testWithCPUAndMemory_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1024);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());

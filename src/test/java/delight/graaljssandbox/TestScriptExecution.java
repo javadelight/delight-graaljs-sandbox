@@ -15,7 +15,7 @@ public class TestScriptExecution {
 		String script = "var t1 = \"(function)\";\n" + "var person={\n" + "    \"name\": \"test\"\n" + "};\n"
 				+ "print(\"t1\" + person.name);";
 
-		NashornSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(6000);
 			sandbox.setMaxMemory(50 * 1024 * 1024L);
@@ -40,7 +40,7 @@ public class TestScriptExecution {
 		String script = "var name = 'n'; " + "function a() {\n" + "}\n" + "switch (name) {\n" + "    case \"s\":\n"
 				+ "    case \"n\":\n" + "}";
 
-		NashornSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
 		try {
 			sandbox.setMaxCPUTime(6000);
 			sandbox.setMaxMemory(50 * 1024 * 1024L);

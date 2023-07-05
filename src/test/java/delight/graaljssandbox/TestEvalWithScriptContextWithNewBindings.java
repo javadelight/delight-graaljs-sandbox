@@ -17,7 +17,7 @@ public class TestEvalWithScriptContextWithNewBindings {
 	
 	@Test
 	public void testWithNewBindings_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		// Create new binding to override the ECMAScript Global properties
 		Bindings newBinding = sandbox.createBindings();
 		@SuppressWarnings("unused")
@@ -30,7 +30,7 @@ public class TestEvalWithScriptContextWithNewBindings {
 	
 	@Test
 	public void testWithNewSimpleBindings_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		// Create new binding to override the ECMAScript Global properties
 		Bindings newBinding = new SimpleBindings();
 		newBinding.put("Date", "2112018");
@@ -41,7 +41,7 @@ public class TestEvalWithScriptContextWithNewBindings {
 	
 	@Test
 	public void testWithNewBindingsScriptContext_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		SandboxScriptContext newContext = sandbox.createScriptContext();
 		// Create new binding to override the ECMAScript Global properties 
 		Bindings newBinding = sandbox.createBindings();
@@ -54,7 +54,7 @@ public class TestEvalWithScriptContextWithNewBindings {
 	
 	@Test
 	public void testWithExistingBindings_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 	  SandboxScriptContext newContext = sandbox.createScriptContext();
 		Bindings newBinding = newContext.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
 		// This will not be updated by using existing bindings, since Date is a 

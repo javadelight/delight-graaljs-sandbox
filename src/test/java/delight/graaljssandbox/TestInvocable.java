@@ -14,7 +14,7 @@ public class TestInvocable {
 
 	@Test
 	public void testInvokeFunction_graal() throws ScriptCPUAbuseException, ScriptException, NoSuchMethodException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		final String script = "function x(){return 1;}\n";
 		sandbox.eval(script);
 		Invocable invocable = sandbox.getSandboxedInvocable();
@@ -23,7 +23,7 @@ public class TestInvocable {
 
 	@Test
 	public void testInvokeMethod_graal() throws ScriptCPUAbuseException, ScriptException, NoSuchMethodException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		final String script = "var obj = {n: 1, x:function(arg){return this.n + arg;}};";
 		sandbox.eval(script);
 		Object thisobj = sandbox.get("obj");

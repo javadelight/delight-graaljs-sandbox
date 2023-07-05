@@ -18,7 +18,7 @@ public class TestScriptAbuse {
 
 		String js = "var x = 1;\nwhile (true) { }\n";
 
-		NashornSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1000 * 100); // GraalVM needs more
 		sandbox.allowNoBraces(false);

@@ -15,14 +15,14 @@ public class TestExceptions {
 
 	@Test(expected = Exception.class)
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.eval("blah_blah_blah();");
 	}
 
 	@Test
 	public void test_with_catch_graal() {
 		try {
-			final NashornSandbox sandbox = GraalSandboxes.create();
+			final GraalSandbox sandbox = GraalSandboxes.create();
 			sandbox.eval("blah_blah_blah();");
 		} catch (final Throwable _t) {
 			if (_t instanceof Throwable) {
@@ -38,7 +38,7 @@ public class TestExceptions {
 	@Test
 	public void test_with_thread_graal() {
 		try {
-			final NashornSandbox sandbox = GraalSandboxes.create();
+			final GraalSandbox sandbox = GraalSandboxes.create();
 			sandbox.setMaxCPUTime(100);
 			sandbox.setExecutor(Executors.newSingleThreadExecutor());
 			sandbox.eval("blah_blah_blah();");
@@ -55,7 +55,7 @@ public class TestExceptions {
 
 	@Test
 	public void test_with_line_number_graal() {
-		NashornSandbox sandbox = null;
+		GraalSandbox sandbox = null;
 		try {
 			sandbox = GraalSandboxes.create();
 			sandbox.setMaxCPUTime(5000);

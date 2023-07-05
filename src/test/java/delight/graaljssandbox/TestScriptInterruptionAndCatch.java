@@ -13,7 +13,7 @@ public class TestScriptInterruptionAndCatch {
 	
 	 @Test(expected = ScriptCPUAbuseException.class)
 	  public void test_catch_graal() throws ScriptCPUAbuseException, ScriptException {
-	    final NashornSandbox sandbox = GraalSandboxes.create();
+	    final GraalSandbox sandbox = GraalSandboxes.create();
 	    try {
 	      sandbox.setMaxCPUTime(50);
 	      sandbox.setExecutor(Executors.newSingleThreadExecutor());

@@ -19,7 +19,7 @@ public class TestBraces {
 		String js = "function preProcessor()\n" + "{\n" + "var map =  { \"inputparam\": \" for \" };\n" + "}\n"
 				+ "preProcessor();";
 
-		NashornSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1000 * 100); // GraalVM needs more
 		sandbox.allowNoBraces(false);
@@ -33,7 +33,7 @@ public class TestBraces {
 
 	@Test(expected = BracesException.class)
 	public void test_invalid_graal() throws ScriptCPUAbuseException, ScriptException {
-		NashornSandbox sandbox = null;
+		GraalSandbox sandbox = null;
 		try {
 			String js = "function preProcessor()\n" + "{\n" + "var map =  { \"inputparam\": \"l\" }; for (;;); \n"
 					+ "}\n" + "preProcessor();";

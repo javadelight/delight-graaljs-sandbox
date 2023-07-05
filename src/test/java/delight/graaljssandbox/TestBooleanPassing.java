@@ -15,7 +15,7 @@ public class TestBooleanPassing {
 	
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		NashornSandbox sandbox = GraalSandboxes.create();
+		GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1000);
 		sandbox.allowNoBraces(false);

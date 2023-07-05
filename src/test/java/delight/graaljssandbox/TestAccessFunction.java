@@ -15,7 +15,7 @@ public class TestAccessFunction {
 	
 	@Test
 	  public void test_access_variable_graal() throws ScriptCPUAbuseException, ScriptException {
-	    final NashornSandbox sandbox = GraalSandboxes.create();
+	    final GraalSandbox sandbox = GraalSandboxes.create();
 	    sandbox.eval("function callMe() { return 42; };");
 	    final Object _get = sandbox.get("callMe");
 	    Assert.assertEquals(Integer.valueOf(42), ((Function<Object[], Object>) _get).apply(null));

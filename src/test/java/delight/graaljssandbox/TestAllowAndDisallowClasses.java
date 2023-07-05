@@ -17,7 +17,7 @@ public class TestAllowAndDisallowClasses {
 	
 	@Test
 	  public void test_file_graal() throws ScriptCPUAbuseException, ScriptException {
-	    NashornSandbox sandbox = GraalSandboxes.create();
+	    GraalSandbox sandbox = GraalSandboxes.create();
 	    final String testClassScript = "var File = Java.type('java.io.File'); File;";
 	    sandbox.allow(File.class);
 	    sandbox.eval(testClassScript);

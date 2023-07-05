@@ -15,7 +15,7 @@ public class TestEvalWithScriptBindings {
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 
 		Bindings binding1 = sandbox.createBindings();
 		binding1.put("y", 2);
@@ -33,7 +33,7 @@ public class TestEvalWithScriptBindings {
 
 	@Test
 	public void testWithCPUAndMemory_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1024);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());

@@ -12,7 +12,7 @@ public class TestEval {
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		final Object res = sandbox.eval("var x = 1 + 1; x;");
 		Assert.assertEquals(Integer.valueOf(2), res);
 	}

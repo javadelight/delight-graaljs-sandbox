@@ -17,7 +17,7 @@ public class TestEvalWithScriptContextWithVariables {
 
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		SandboxScriptContext newContext1 = sandbox.createScriptContext();
 		SandboxScriptContext newContext2 = sandbox.createScriptContext();
 
@@ -34,7 +34,7 @@ public class TestEvalWithScriptContextWithVariables {
 
 	@Test
 	public void testWithCPUAndMemory_graal() throws ScriptCPUAbuseException, ScriptException {
-		final NashornSandbox sandbox = GraalSandboxes.create();
+		final GraalSandbox sandbox = GraalSandboxes.create();
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1024);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
