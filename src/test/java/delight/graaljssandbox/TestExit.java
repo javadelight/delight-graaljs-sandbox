@@ -33,7 +33,7 @@ public class TestExit {
 	@Ignore("This will fail as there is no confirmation on Script Contexts")
 	public void testQuitWithScriptContext_graal() throws ScriptCPUAbuseException, ScriptException {
 		final NashornSandbox sandbox = GraalSandboxes.create();
-		sandbox.eval("quit();", new SimpleScriptContext());
+		sandbox.eval("quit();", sandbox.createScriptContext());
 	}
 
 }

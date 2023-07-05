@@ -173,9 +173,15 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		final Bindings securedBindings = secureBindings(bindings);
 		if (bindings != null)
 			addedKeys.addAll(bindings.keySet());
-		EvaluateOperation op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
-				scriptContext.getContext(),
-				securedBindings);
+		EvaluateOperation op;
+		if (scriptContext != null) {
+			op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
+					scriptContext.getContext(),
+					securedBindings);
+		} else {
+			op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
+					null, securedBindings);
+		}
 		try {
 			return executeSandboxedOperation(op);
 		} finally {

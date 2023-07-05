@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import delight.nashornsandbox.NashornSandbox;
+import delight.nashornsandbox.SandboxScriptContext;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 
 public class TestEvalWithScriptContextWithNewBindings {
@@ -41,11 +42,11 @@ public class TestEvalWithScriptContextWithNewBindings {
 	@Test
 	public void testWithNewBindingsScriptContext_graal() throws ScriptCPUAbuseException, ScriptException {
 		final NashornSandbox sandbox = GraalSandboxes.create();
-		ScriptContext newContext = new SimpleScriptContext();
+		SandboxScriptContext newContext = sandbox.createScriptContext();
 		// Create new binding to override the ECMAScript Global properties 
 		Bindings newBinding = sandbox.createBindings();
 		newBinding.put("Date", "2112018");
-		newContext.setBindings(newBinding, ScriptContext.ENGINE_SCOPE);
+		newContext.getContext().setBindings(newBinding, ScriptContext.ENGINE_SCOPE);
 
 		final Object res = sandbox.eval("function method() { return parseInt(Date);} method();", newContext);
 		Assert.assertEquals(2112018, res);
@@ -54,8 +55,8 @@ public class TestEvalWithScriptContextWithNewBindings {
 	@Test
 	public void testWithExistingBindings_graal() throws ScriptCPUAbuseException, ScriptException {
 		final NashornSandbox sandbox = GraalSandboxes.create();
-		ScriptContext newContext = new SimpleScriptContext();
-		Bindings newBinding = newContext.getBindings(ScriptContext.ENGINE_SCOPE);
+	  SandboxScriptContext newContext = sandbox.createScriptContext();
+		Bindings newBinding = newContext.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
 		// This will not be updated by using existing bindings, since Date is a 
 		// ECMAScript "global" properties and it is being in ENGINE_SCOPE
 		newBinding.put("Date", "2112018");

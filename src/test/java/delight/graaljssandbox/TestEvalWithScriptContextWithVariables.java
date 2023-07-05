@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import delight.nashornsandbox.NashornSandbox;
+import delight.nashornsandbox.SandboxScriptContext;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 
 public class TestEvalWithScriptContextWithVariables {
@@ -17,8 +18,8 @@ public class TestEvalWithScriptContextWithVariables {
 	@Test
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
 		final NashornSandbox sandbox = GraalSandboxes.create();
-		ScriptContext newContext1 = new SimpleScriptContext();
-		ScriptContext newContext2 = new SimpleScriptContext();
+		SandboxScriptContext newContext1 = sandbox.createScriptContext();
+		SandboxScriptContext newContext2 = sandbox.createScriptContext();
 
 		sandbox.eval("function cal() {var x = 1; return x;}", newContext1);
 		sandbox.eval("function cal() {var x = 2; return x;}", newContext2);
@@ -37,8 +38,8 @@ public class TestEvalWithScriptContextWithVariables {
 		sandbox.setMaxCPUTime(100);
 		sandbox.setMaxMemory(1000 * 1024);
 		sandbox.setExecutor(Executors.newSingleThreadExecutor());
-		ScriptContext newContext1 = new SimpleScriptContext();
-		ScriptContext newContext2 = new SimpleScriptContext();
+		SandboxScriptContext newContext1 = sandbox.createScriptContext();
+		SandboxScriptContext newContext2 = sandbox.createScriptContext();
 
 		sandbox.eval("function cal() {var x = 1; return x;}", newContext1);
 		sandbox.eval("function cal() {var x = 2; return x;}", newContext2);
