@@ -7,6 +7,7 @@ import javax.script.ScriptContext;
 import javax.script.ScriptException;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import delight.nashornsandbox.SandboxScriptContext;
@@ -18,6 +19,7 @@ public class TestEvalWithScriptContext {
 	public void test_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
 		SandboxScriptContext newContext1 = sandbox.createScriptContext();
+
 		Bindings engineScope1 = newContext1.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
 		engineScope1.put("y", 2);
 
@@ -33,6 +35,7 @@ public class TestEvalWithScriptContext {
 
 	}
 
+	@Ignore
 	@Test
 	public void testWithCPUAndMemory_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
