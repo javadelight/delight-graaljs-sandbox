@@ -8,7 +8,6 @@ import javax.script.ScriptException;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 
 public class TestBindingsInsert {

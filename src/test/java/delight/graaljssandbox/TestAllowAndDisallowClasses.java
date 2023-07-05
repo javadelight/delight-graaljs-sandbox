@@ -9,7 +9,7 @@ import org.graalvm.polyglot.PolyglotException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 
 @SuppressWarnings("all")

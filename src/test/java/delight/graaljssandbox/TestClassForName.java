@@ -7,7 +7,7 @@ import javax.script.ScriptException;
 import org.graalvm.polyglot.PolyglotException;
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 import junit.framework.Assert;
 
 public class TestClassForName {

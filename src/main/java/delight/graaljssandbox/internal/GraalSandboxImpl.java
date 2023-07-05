@@ -142,20 +142,7 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 	@Override
 	public Object eval(final String js, final SandboxScriptContext scriptContext, final Bindings bindings)
 			throws ScriptCPUAbuseException, ScriptException {
-		Set<String> addedKeys = new HashSet<>();
-		if (scriptContext != null) {
-			Bindings engineBindings = scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
-
-			Bindings contextBindings = scriptContext.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
-			if (contextBindings != null) {
-				for (String key : contextBindings.keySet()) {
-					if (engineBindings.get(key) != null)
-						contextBindings.remove(key);
-					else
-						addedKeys.add(key);
-				}
-			}
-		}
+		final Set<String> addedKeys = new HashSet<>();
 		produceSecureBindings(); // We need this here for bindings
 		final JsSanitizer sanitizer = getSanitizer();
 		// see https://github.com/javadelight/delight-nashorn-sandbox/issues/73
@@ -165,16 +152,30 @@ public class GraalSandboxImpl extends NashornSandboxImpl implements GraalSandbox
 		if (scriptContext == null) {
 			securedJs = blockAccessToEngine + sanitizer.secureJs(js);
 		} else {
-			// Unfortunately, blocking access to the engine property inteferes with setting
-			// a script context
-			// needs further investigation
+			// Unfortunately, blocking access to the engine property interferes with setting
+			// a script context needs further investigation
 			securedJs = sanitizer.secureJs(js);
 		}
-		final Bindings securedBindings = secureBindings(bindings);
-		if (bindings != null)
-			addedKeys.addAll(bindings.keySet());
+
+
 		EvaluateOperation op;
+		final Bindings securedBindings = secureBindings(bindings);
 		if (scriptContext != null) {
+			// Bindings engineBindings = scriptEngine.getBindings(ScriptContext.ENGINE_SCOPE);
+
+			// Bindings contextBindings = scriptContext.getContext().getBindings(ScriptContext.ENGINE_SCOPE);
+			// if (contextBindings != null) {
+			// 	for (String key : contextBindings.keySet()) {
+			// 		if (engineBindings.get(key) != null)
+			// 			contextBindings.remove(key);
+			// 		else
+			// 			addedKeys.add(key);
+			// 	}
+			// }
+
+			// if (bindings != null) {
+			// 	addedKeys.addAll(bindings.keySet());
+			// }
 			op = new EvaluateOperation(isStrict ? "'use strict';" + securedJs : securedJs,
 					scriptContext.getContext(),
 					securedBindings);

@@ -6,7 +6,7 @@ import javax.script.SimpleScriptContext;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 
 public class TestExit {

@@ -6,7 +6,7 @@ import javax.script.ScriptException;
 
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 
 public class TestScriptExecution {
 

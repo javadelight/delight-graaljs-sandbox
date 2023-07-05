@@ -7,7 +7,7 @@ import javax.script.ScriptException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 import delight.nashornsandbox.NashornSandboxes;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 

@@ -11,7 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 import delight.nashornsandbox.exceptions.BracesException;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 import junit.framework.Assert;

@@ -10,7 +10,7 @@ import javax.script.ScriptException;
 
 import org.junit.Test;
 
-import delight.nashornsandbox.NashornSandbox;
+ 
 import delight.nashornsandbox.SecuredJsCache;
 import delight.nashornsandbox.exceptions.ScriptCPUAbuseException;
 
