@@ -131,7 +131,7 @@ public class TestAdvancedScriptParsing {
 
 	}
 	
-	@Test
+	@Test(expected=ScriptCPUAbuseException.class)
 	public void test_Scenario5_graal() {
 		String js = "";
 		js += "function loopTest(){\n" + 
