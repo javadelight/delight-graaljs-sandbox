@@ -47,7 +47,7 @@ public class TestMemoryLimit {
 		}
 	}
 
-	@Test
+	@Test(expected=ScriptMemoryAbuseException.class)
 	public void test_killed_graal() throws ScriptCPUAbuseException, ScriptException {
 		final GraalSandbox sandbox = GraalSandboxes.create();
 		try {
@@ -57,9 +57,6 @@ public class TestMemoryLimit {
 			final String js = "var o={},i=0; while (true) o[i++] = 'abc'";
 			sandbox.eval(js);
 			fail("Exception should be thrown");
-		} catch (final ScriptMemoryAbuseException e) {
-			assertFalse(e.isScriptKilled()); // thread.interrupt() works on GraalVM, no forceful script kill needed -
-												// see https://www.graalvm.org/docs/reference-manual/embed/
 		} finally {
 			sandbox.getExecutor().shutdown();
 		}
