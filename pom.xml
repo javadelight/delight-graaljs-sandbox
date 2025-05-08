@@ -5,7 +5,7 @@
 
 	<groupId>org.javadelight</groupId>
 	<artifactId>delight-graaljs-sandbox</artifactId>
-	<version>0.2.0</version>
+	<version>0.2.1</version>
 	<url>https://github.com/javadelight/delight-graaljs-sandbox</url>
 
 	<properties>
@@ -86,18 +86,21 @@
 	<build>
 
 		<plugins>
+			
+
 			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.13</version>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.7.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					<publishingServerId>central</publishingServerId>
+					<autoPublish>true</autoPublish>
+					<waitUntil>published</waitUntil>
 				</configuration>
 			</plugin>
 
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
@@ -182,26 +185,7 @@
 			</plugin>
 
 
-			<!-- Keep the MANIFEST.MF used by eclipse in sync with the MANIFEST.MF 
-				created by the maven bundle plugin -->
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<delete file="${basedir}/META-INF/MANIFEST.MF" />
-								<copy file="target/classes/META-INF/MANIFEST.MF"
-									tofile="${basedir}/META-INF/MANIFEST.MF" />
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+		
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
